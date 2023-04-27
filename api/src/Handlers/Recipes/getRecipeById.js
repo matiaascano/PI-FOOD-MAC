@@ -7,7 +7,7 @@ const getRecipeById = async (req, res) => {
 
         if (!response)
         return res 
-        .status(401)
+        .status(401) 
         .json({msg: 'El id ${id} no existe como receta'});
 
         res.status(200).json(response);

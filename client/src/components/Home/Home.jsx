@@ -13,7 +13,7 @@ function Home() {
   const [isLoading, setIsLoading] = useState(true);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 5;
+  const pageSize = 9;
   const pageCount = Math.ceil(allRecipes.length / pageSize);
   const indexOfLastRecipe = currentPage * pageSize; 
   const indexOfFirstRecipe = indexOfLastRecipe - pageSize;
@@ -142,6 +142,7 @@ function Home() {
                 <option value="primal">Primal</option>
                 <option value="fodmap friendly">Fodmap friendly</option>
                 <option value="whole 30">Whole 30</option>
+                <option value="vegetarian">Vegetarian</option>
               </select>
 
               <select
@@ -159,6 +160,30 @@ function Home() {
         </div>
       </nav>
 
+
+      {isLoading ? (
+        <div className={styles.loading}>
+          <img src={loading} alt="Loading..." />
+        </div>
+      ) : (
+        <div className={styles.recipesContainer}>
+          {allRecipes.length
+            ? currentRecipe.map((rec, ind) => (
+                <Card
+                  image={rec.image}
+                  title={rec.title}
+                  diets={rec.diets}
+                  healthScore={rec.healthScore}
+                  id={rec.id}
+                  key={ind}
+                />
+              ))
+            : <h2 className={styles.noCard}>
+             No hay tal receta!
+          </h2>}
+        </div>
+      )}
+      
       {allRecipes.length ? (
         <div className={styles.pageBtnContainer}>
           {currentPage > 1 && (
@@ -191,29 +216,6 @@ function Home() {
           )}
         </div>
       ) : null}
-
-      {isLoading ? (
-        <div className={styles.loading}>
-          <img src={loading} alt="Loading..." />
-        </div>
-      ) : (
-        <div className={styles.recipesContainer}>
-          {allRecipes.length
-            ? currentRecipe.map((rec, ind) => (
-                <Card
-                  image={rec.image}
-                  title={rec.title}
-                  diets={rec.diets}
-                  healthScore={rec.healthScore}
-                  id={rec.id}
-                  key={ind}
-                />
-              ))
-            : <h2 className={styles.noCard}>
-             No hay tal receta!
-          </h2>}
-        </div>
-      )}
     </div>
   );
 }

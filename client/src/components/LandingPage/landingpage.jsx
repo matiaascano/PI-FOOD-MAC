@@ -8,11 +8,11 @@ export default function LandingPage() {
     return (
         <div className={styles.landing}>
             <div className={styles.container}>
-                <h2>Sean Bienvenidos <br />
-                    A Nuestras Recetas!
+                <h2>Welcome to <br />
+                    Our Recipes!
                 </h2>
                 <Link to='/home' style= {{textDecoration: "none"}}>
-                    <button className={styles.Button}>Ingresar</button>
+                    <button className={styles.Button}>Get started!</button>
                 </Link>
                 <div className={styles.mati}>
                 < img src={foto} alt="creador" />
